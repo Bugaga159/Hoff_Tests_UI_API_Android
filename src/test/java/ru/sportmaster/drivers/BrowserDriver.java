@@ -1,15 +1,13 @@
-package ru.hoff.helpers;
-
+package ru.sportmaster.drivers;
 
 import com.codeborne.selenide.Configuration;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import ru.hoff.config.Credentials;
-
+import ru.sportmaster.config.Credentials;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DriverSettings {
+public class BrowserDriver {
 
     public static void configure() {
         Configuration.browser = Credentials.config.browser();

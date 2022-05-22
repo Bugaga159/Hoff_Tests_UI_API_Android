@@ -1,18 +1,21 @@
-package ru.hoff.config;
+package ru.sportmaster.config;
 
 import org.aeonbits.owner.Config;
 
 @Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
         "system:properties",
-        "classpath:config/local.properties",
-        "classpath:config/remote.properties"
+        "classpath:config/${client}.properties",
 })
 public interface ProjectConfig extends Config {
 
+    String client();
+    String type();
+    @DefaultValue("https://www.sportmaster.ru")
+    String baseUrl();
     @DefaultValue("chrome")
     String browser();
-    @DefaultValue("100.0")
+    @DefaultValue("101.0")
     String browserVersion();
     @DefaultValue("1920x1080")
     String browserSize();
@@ -30,5 +33,4 @@ public interface ProjectConfig extends Config {
     String user();
     String key();
     String app();
-    String baseUrl();
 }

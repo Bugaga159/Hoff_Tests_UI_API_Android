@@ -1,4 +1,4 @@
-package ru.hoff.config;
+package ru.sportmaster.config;
 
 import org.aeonbits.owner.ConfigFactory;
 
@@ -9,8 +9,15 @@ public class Credentials {
         return !config.browserMobileView().equals("");
     }
 
+    public static boolean isMobile() {
+        return config.type().equals("mobile");
+    }
+    public static boolean isApiTest() {
+        return config.type().equals("api");
+    }
+
     public static boolean isRemoteWebDriver() {
-        return !config.remoteDriverUrl().equals("");
+        return config.client().equals("remoteBrowser");
     }
 
     public static boolean isVideoOn() {
@@ -18,6 +25,6 @@ public class Credentials {
     }
 
     public static boolean isBrowserStack() {
-        return System.getProperty("device").equals("browserstack");
+        return config.client().equals("browserstack");
     }
 }

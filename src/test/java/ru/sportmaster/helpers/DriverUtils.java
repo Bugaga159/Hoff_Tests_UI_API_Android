@@ -1,4 +1,4 @@
-package ru.hoff.helpers;
+package ru.sportmaster.helpers;
 
 import com.codeborne.selenide.Selenide;
 import org.openqa.selenium.OutputType;
@@ -6,8 +6,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.hoff.config.Project;
-
+import ru.sportmaster.config.Credentials;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -17,7 +16,6 @@ import static org.openqa.selenium.logging.LogType.BROWSER;
 
 public class DriverUtils {
     public static final Logger LOGGER = LoggerFactory.getLogger(DriverUtils.class);
-
 
     public static String getSessionId() {
         return ((RemoteWebDriver) getWebDriver()).getSessionId().toString();
@@ -32,7 +30,7 @@ public class DriverUtils {
     }
 
     public static URL getVideoUrl(String sessionId) {
-        String videoUrl = Project.config.videoStorage() + sessionId + ".mp4";
+        String videoUrl = Credentials.config.videoStorage() + sessionId + ".mp4";
 
         try {
             return new URL(videoUrl);

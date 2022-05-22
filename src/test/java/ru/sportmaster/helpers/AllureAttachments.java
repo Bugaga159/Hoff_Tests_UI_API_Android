@@ -1,10 +1,9 @@
-package ru.hoff.helpers;
+package ru.sportmaster.helpers;
 
 import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,7 +33,7 @@ public class AllureAttachments {
         return DriverUtils.getPageSourceAsBytes();
     }
 
-    public static void addVideo(String sessionId) {
+    public static void addVideoBrowser(String sessionId) {
         URL videoUrl = DriverUtils.getVideoUrl(sessionId);
         if (videoUrl != null) {
             InputStream videoInputStream = null;
@@ -55,5 +54,10 @@ public class AllureAttachments {
         }
     }
 
-
+    @Attachment(value = "Video", type = "text/html", fileExtension = ".html")
+    public static String addVideoBrowserstack(String sessionId) {
+        return "<html><body><video width='100%' height='100%' controls autoplay><source src='"
+                + Browserstack.videoUrl(sessionId)
+                + "' type='video/mp4'></video></body></html>";
+    }
 }

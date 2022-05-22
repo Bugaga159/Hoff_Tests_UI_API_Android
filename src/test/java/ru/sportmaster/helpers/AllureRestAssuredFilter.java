@@ -1,4 +1,4 @@
-package ru.hoff.helpers;
+package ru.sportmaster.helpers;
 
 import io.qameta.allure.restassured.AllureRestAssured;
 

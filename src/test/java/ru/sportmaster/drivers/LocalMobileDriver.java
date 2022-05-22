@@ -1,4 +1,4 @@
-package ru.hoff.drivers;
+package ru.sportmaster.drivers;
 
 import com.codeborne.selenide.WebDriverProvider;
 import io.appium.java_client.android.AndroidDriver;
@@ -6,9 +6,7 @@ import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.remote.AutomationName;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
-import ru.hoff.config.Credentials;
-
-
+import ru.sportmaster.config.Credentials;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;

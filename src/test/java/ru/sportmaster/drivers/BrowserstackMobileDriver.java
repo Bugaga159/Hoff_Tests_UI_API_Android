@@ -1,17 +1,16 @@
-package ru.hoff.drivers;
+package ru.sportmaster.drivers;
 
 import com.codeborne.selenide.WebDriverProvider;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import ru.hoff.config.Credentials;
-
+import ru.sportmaster.config.Credentials;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static ru.hoff.helpers.Browserstack.browserstackLogin;
-import static ru.hoff.helpers.Browserstack.browserstackPassword;
+import static ru.sportmaster.helpers.Browserstack.browserstackLogin;
+import static ru.sportmaster.helpers.Browserstack.browserstackPassword;
 
 
 public class BrowserstackMobileDriver implements WebDriverProvider {
