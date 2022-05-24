@@ -1,4 +1,4 @@
-package ru.sportmaster.models.addtoBasket.request;
+package ru.sportmaster.models.addToBasket.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ItemsGoods {
+public class ItemsItem{
+	private Product product;
 	private int quantity;
-	private String productId;
-	private String wareId;
+	private Price price;
 }
