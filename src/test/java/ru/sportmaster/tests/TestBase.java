@@ -27,27 +27,29 @@ public class TestBase {
     @BeforeAll
     public static void setup() {
         addListener("AllureSelenide", new AllureSelenide());
-        System.out.println(Credentials.config.client());
-        switch (Credentials.config.client()) {
-            case "real":
-            case "emulator":
-                Configuration.browser = LocalMobileDriver.class.getName();
-                Configuration.browserSize = null;
-                break;
-            case "browserstack":
-                Configuration.browser = BrowserstackMobileDriver.class.getName();
-                Configuration.browserSize = null;
-                break;
-            case "remoteBrowser":
-            case "localBrowser":
-                BrowserDriver.configure();
-                break;
-            default:
-                throw new IllegalArgumentException("Something strange happened");
-        }
 
-        RestAssured.baseURI = Credentials.config.baseUrl();
-        RestAssured.filters(withCustomTemplates());
+        if (!Credentials.isApiTest()) {
+            switch (Credentials.config.client()) {
+                case "real":
+                case "emulator":
+                    Configuration.browser = LocalMobileDriver.class.getName();
+                    Configuration.browserSize = null;
+                    break;
+                case "browserstack":
+                    Configuration.browser = BrowserstackMobileDriver.class.getName();
+                    Configuration.browserSize = null;
+                    break;
+                case "remoteBrowser":
+                case "localBrowser":
+                    BrowserDriver.configure();
+                    break;
+                default:
+                    throw new IllegalArgumentException("Something strange happened");
+            }
+        } else {
+            RestAssured.baseURI = Credentials.config.baseUrl();
+            RestAssured.filters(withCustomTemplates());
+        }
     }
 
     @BeforeEach
