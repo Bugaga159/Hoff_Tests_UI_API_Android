@@ -19,6 +19,7 @@ import ru.sportmaster.helpers.DriverUtils;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.logevents.SelenideLogger.addListener;
+import static ru.sportmaster.helpers.AllureRestAssuredFilter.withCustomTemplates;
 import static ru.sportmaster.helpers.DriverUtils.getSessionId;
 
 @ExtendWith({AllureJunit5.class})
@@ -46,7 +47,7 @@ public class TestBase {
         }
 
         RestAssured.baseURI = Credentials.config.baseUrl();
-        RestAssured.filters(new AllureRestAssured());
+        RestAssured.filters(withCustomTemplates());
     }
 
     @BeforeEach
