@@ -1,4 +1,4 @@
-package ru.sportmaster.models.addtoBasket.request;
+package ru.sportmaster.models.addToBasket.request;
 
 import java.util.List;
 
