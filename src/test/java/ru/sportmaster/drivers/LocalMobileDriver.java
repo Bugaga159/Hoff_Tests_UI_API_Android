@@ -28,10 +28,11 @@ public class LocalMobileDriver implements WebDriverProvider {
         options.setDeviceName(Credentials.config.deviceName());
         options.setPlatformVersion(Credentials.config.platformVersion());
         options.setApp(app.getAbsolutePath());
-        options.setLocale("en");
-        options.setLanguage("en");
-        options.setAppPackage("org.wikipedia.alpha");
-        options.setAppActivity("org.wikipedia.main.MainActivity");
+        options.setLocale("ru");
+        options.setLanguage("ru");
+        options.setAppPackage("ru.sportmaster.app");
+        options.setAppActivity(".presentation.start.StartActivity");
+        options.setFullReset(true);
 
         return new AndroidDriver(getAppiumServerUrl(), options);
     }

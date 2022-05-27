@@ -6,7 +6,7 @@ public class Credentials {
     public static ProjectConfig config = ConfigFactory.create(ProjectConfig.class, System.getProperties());
 
     public static boolean isWebMobile() {
-        return !config.browserMobileView().equals("");
+        return config.browserMobileView() != null;
     }
 
     public static boolean isMobile() {
@@ -21,7 +21,7 @@ public class Credentials {
     }
 
     public static boolean isVideoOn() {
-        return !config.videoStorage().equals("");
+        return config.videoStorage() != null;
     }
 
     public static boolean isBrowserStack() {
