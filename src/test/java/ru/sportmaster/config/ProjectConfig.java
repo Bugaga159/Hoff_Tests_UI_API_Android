@@ -28,7 +28,7 @@ public interface ProjectConfig extends Config {
     String deviceName();
     String platformName();
     @Key("platformVersion")
-    @DefaultValue("11.0")
+    @DefaultValue("12.0")
     String platformVersion();
     String user();
     String key();

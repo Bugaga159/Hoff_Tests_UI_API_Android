@@ -2,7 +2,6 @@ package ru.sportmaster.tests;
 
 import com.codeborne.selenide.Configuration;
 import io.qameta.allure.junit5.AllureJunit5;
-import io.qameta.allure.restassured.AllureRestAssured;
 import io.qameta.allure.selenide.AllureSelenide;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.AfterEach;
@@ -14,7 +13,6 @@ import ru.sportmaster.drivers.BrowserDriver;
 import ru.sportmaster.drivers.BrowserstackMobileDriver;
 import ru.sportmaster.drivers.LocalMobileDriver;
 import ru.sportmaster.helpers.AllureAttachments;
-import ru.sportmaster.helpers.DriverUtils;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
@@ -27,7 +25,6 @@ public class TestBase {
     @BeforeAll
     public static void setup() {
         addListener("AllureSelenide", new AllureSelenide());
-
         if (!Credentials.isApiTest()) {
             switch (Credentials.config.client()) {
                 case "real":
@@ -66,13 +63,12 @@ public class TestBase {
             if (Credentials.isBrowserStack() || Credentials.isRemoteWebDriver()) {
                 sessionId = getSessionId();
             }
-
             AllureAttachments.addScreenshotAs("Last screenshot");
             AllureAttachments.addPageSource();
-            AllureAttachments.addBrowserConsoleLogs();
-
+            if (!Credentials.isMobile()) {
+                AllureAttachments.addBrowserConsoleLogs();
+            }
             closeWebDriver();
-
             if (Credentials.isBrowserStack()) {
                 AllureAttachments.addVideoBrowserstack(sessionId);
             }

@@ -1,12 +1,15 @@
 package ru.sportmaster.tests.api;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Owner;
 import io.qameta.allure.Step;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import ru.sportmaster.helpers.Layer;
 import ru.sportmaster.helpers.QueriesRestAssured;
 import ru.sportmaster.models.addToBasket.request.ItemsGoods;
 import ru.sportmaster.models.addToBasket.request.ReqAddGoodsToBasket;
@@ -21,10 +24,13 @@ import java.util.List;
 import static io.qameta.allure.Allure.step;
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Layer("rest")
 public class ReqresApiTest extends TestBase {
 
     @Test
     @Tag("API")
+    @Owner("Panin")
+    @Story("GET /product-view/{id}")
     @Description("Получить данные о товаре")
     @DisplayName("GET /product-view/{id} - 200")
     public void getProductById200Test(){
@@ -35,6 +41,8 @@ public class ReqresApiTest extends TestBase {
 
     @Test
     @Tag("API")
+    @Owner("Panin")
+    @Story("GET /product-view/{id}")
     @Description("Получить данные о товаре")
     @DisplayName("GET /product-view/{id} - 400")
     public void getProductById400Test(){
@@ -44,6 +52,8 @@ public class ReqresApiTest extends TestBase {
 
     @Test
     @Tag("API")
+    @Owner("Panin")
+    @Story("GET /product-view/{id}")
     @Description("Получить данные о товаре")
     @DisplayName("GET /product-view/{id} - 404")
     public void getProductById404Test(){
@@ -53,6 +63,8 @@ public class ReqresApiTest extends TestBase {
 
     @Test
     @Tag("API")
+    @Owner("Panin")
+    @Story("POST /cart/products/quantity/")
     @Description("Добавить товар в пустую корзину")
     @DisplayName("POST /cart/products/quantity/ - 200")
     public void addToBasket200Test(){
@@ -73,6 +85,8 @@ public class ReqresApiTest extends TestBase {
             "1246,sdet",
             "23117d750299,178160260r299"})
     @Tag("API")
+    @Owner("Panin")
+    @Story("POST /cart/products/quantity/")
     @Description("Добавить товар в пустую корзину с invalid id")
     @DisplayName("POST /cart/products/quantity/ - 400")
     public void addToBasket400Test(String productId, String wareId){
@@ -88,6 +102,8 @@ public class ReqresApiTest extends TestBase {
 
     @Test
     @Tag("API")
+    @Owner("Panin")
+    @Story("PUT /comparison/products/")
     @Description("Добавить товар в сравнение")
     @DisplayName("PUT /comparison/products/ - 200")
     public void addToComparison200Test(){
@@ -98,6 +114,8 @@ public class ReqresApiTest extends TestBase {
 
     @Test
     @Tag("API")
+    @Owner("Panin")
+    @Story("PUT /comparison/products/")
     @Description("Добавить товар в сравнение c invalid id")
     @DisplayName("PUT /comparison/products/ - 400")
     public void addToComparison400Test(){
@@ -108,6 +126,8 @@ public class ReqresApiTest extends TestBase {
 
     @Test
     @Tag("API")
+    @Owner("Panin")
+    @Story("PUT /comparison/products/")
     @Description("Добавить товар в сравнение c empty id")
     @DisplayName("PUT /comparison/products/ - 400")
     public void addToComparison400WithoutIdTest(){
@@ -118,6 +138,8 @@ public class ReqresApiTest extends TestBase {
 
     @Test
     @Tag("API")
+    @Owner("Panin")
+    @Story("PUT /comparison/products/")
     @Description("Добавить товар в сравнение c несуществующим id")
     @DisplayName("PUT /comparison/products/ - 404")
     public void addToComparison404Test(){
