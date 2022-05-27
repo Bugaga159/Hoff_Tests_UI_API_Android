@@ -34,7 +34,7 @@ public class AddGoodsToBasketTest extends TestBase {
         step("Кликнуть на 'Перейти в корзину'", () -> {
             $(byText("Перейти в корзину")).click();
         });
-        step("Проверки на странице фильма", () -> {
+        step("Кол-во товара в корзине = 1", () -> {
             $$("[data-selenium='basket-item']").shouldHave(CollectionCondition.size(1));
         });
     }
@@ -64,7 +64,7 @@ public class AddGoodsToBasketTest extends TestBase {
         step("Кликнуть на 'Перейти в корзину'", () -> {
             $("[data-selenium='sm_badge_item']").click();
         });
-        step("Проверки на странице фильма", () -> {
+        step("Кол-во товара в корзине = 1", () -> {
             $$("[data-selenium='basket-item']").shouldHave(CollectionCondition.size(1));
         });
     }
