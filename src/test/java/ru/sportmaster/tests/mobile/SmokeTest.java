@@ -9,9 +9,8 @@ import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import ru.sportmaster.config.Credentials;
+import ru.sportmaster.config.Project;
 import ru.sportmaster.helpers.Layer;
-import ru.sportmaster.tests.TestBase;
 import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.visible;
@@ -20,7 +19,7 @@ import static com.codeborne.selenide.Selenide.$$;
 import static io.qameta.allure.Allure.step;
 
 @Layer("mobile")
-public class SmokeTest extends TestBase {
+public class SmokeTest extends TestBaseMobile {
 
     @Test
     @Tag("Android")
@@ -33,7 +32,7 @@ public class SmokeTest extends TestBase {
             $(AppiumBy.className("android.widget.ImageButton")).click();
             $(AppiumBy.className("android.widget.ImageButton")).click();
 
-            if (Credentials.isBrowserStack()) {
+            if (Project.isBrowserStack()) {
                 $(AppiumBy.id("com.android.packageinstaller:id/permission_deny_button")).click();
             } else {
                 $(AppiumBy.id("com.android.permissioncontroller:id/permission_deny_button")).click();
@@ -79,7 +78,7 @@ public class SmokeTest extends TestBase {
             $(AppiumBy.className("android.widget.ImageButton")).click();
             $(AppiumBy.className("android.widget.ImageButton")).click();
 
-            if (Credentials.isBrowserStack()) {
+            if (Project.isBrowserStack()) {
                 $(AppiumBy.id("com.android.packageinstaller:id/permission_deny_button")).click();
             } else {
                 $(AppiumBy.id("com.android.permissioncontroller:id/permission_deny_button")).click();

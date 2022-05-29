@@ -10,14 +10,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import ru.sportmaster.helpers.Layer;
-import ru.sportmaster.helpers.QueriesRestAssured;
+import ru.sportmaster.helpers.StepsRestAssured;
 import ru.sportmaster.models.addToBasket.request.ItemsGoods;
 import ru.sportmaster.models.addToBasket.request.ReqAddGoodsToBasket;
 import ru.sportmaster.models.addToBasket.response.RespAddToBasket;
 import ru.sportmaster.models.addToComparison.request.ReqProductId;
 import ru.sportmaster.models.addToComparison.response.RespProductIds;
 import ru.sportmaster.models.getProduct.response.RespProduct;
-import ru.sportmaster.tests.TestBase;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +24,7 @@ import static io.qameta.allure.Allure.step;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Layer("rest")
-public class ReqresApiTest extends TestBase {
+public class ReqresApiTest extends TestBaseApi {
 
     @Test
     @Tag("API")
@@ -35,7 +34,7 @@ public class ReqresApiTest extends TestBase {
     @DisplayName("GET /product-view/{id} - 200")
     public void getProductById200Test(){
         String prodId = "26149430299";
-        RespProduct res = QueriesRestAssured.getProductById(prodId, 200).as(RespProduct.class);
+        RespProduct res = StepsRestAssured.getProductById(prodId, 200).as(RespProduct.class);
         assertGetProductById(prodId, res);
     }
 
@@ -47,7 +46,7 @@ public class ReqresApiTest extends TestBase {
     @DisplayName("GET /product-view/{id} - 400")
     public void getProductById400Test(){
         String prodId = "2614943ddd0299";
-        QueriesRestAssured.getProductById(prodId, 400);
+        StepsRestAssured.getProductById(prodId, 400);
     }
 
     @Test
@@ -58,7 +57,7 @@ public class ReqresApiTest extends TestBase {
     @DisplayName("GET /product-view/{id} - 404")
     public void getProductById404Test(){
         String prodId = "2617474874387878379";
-        QueriesRestAssured.getProductById(prodId, 404);
+        StepsRestAssured.getProductById(prodId, 404);
     }
 
     @Test
@@ -75,7 +74,7 @@ public class ReqresApiTest extends TestBase {
                 .build();
 
         ReqAddGoodsToBasket basket = createTestObject(goods);
-        RespAddToBasket res = QueriesRestAssured.postProductToCart(basket, 200).as(RespAddToBasket.class);
+        RespAddToBasket res = StepsRestAssured.postProductToCart(basket, 200).as(RespAddToBasket.class);
         assertPostResProductToCart(goods, res);
     }
 
@@ -97,7 +96,7 @@ public class ReqresApiTest extends TestBase {
                 .build();
 
         ReqAddGoodsToBasket basket = createTestObject(goods);
-        QueriesRestAssured.postProductToCart(basket, 400);
+        StepsRestAssured.postProductToCart(basket, 400);
     }
 
     @Test
@@ -108,7 +107,7 @@ public class ReqresApiTest extends TestBase {
     @DisplayName("PUT /comparison/products/ - 200")
     public void addToComparison200Test(){
         ReqProductId product = ReqProductId.builder().productId("25549950299").build();
-        RespProductIds res = QueriesRestAssured.putGoodsToComparison(product, 200).as(RespProductIds.class);
+        RespProductIds res = StepsRestAssured.putGoodsToComparison(product, 200).as(RespProductIds.class);
         assertPutGoodsToComparison(product, res);
     }
 
@@ -120,7 +119,7 @@ public class ReqresApiTest extends TestBase {
     @DisplayName("PUT /comparison/products/ - 400")
     public void addToComparison400Test(){
         ReqProductId product = ReqProductId.builder().productId("255499cccc50299").build();
-        RespProductIds res = QueriesRestAssured.putGoodsToComparison(product, 400).as(RespProductIds.class);
+        RespProductIds res = StepsRestAssured.putGoodsToComparison(product, 400).as(RespProductIds.class);
         assertPutGoodsToComparison(product, res);
     }
 
@@ -132,7 +131,7 @@ public class ReqresApiTest extends TestBase {
     @DisplayName("PUT /comparison/products/ - 400")
     public void addToComparison400WithoutIdTest(){
         ReqProductId product = ReqProductId.builder().productId("").build();
-        RespProductIds res = QueriesRestAssured.putGoodsToComparison(product, 400).as(RespProductIds.class);
+        RespProductIds res = StepsRestAssured.putGoodsToComparison(product, 400).as(RespProductIds.class);
         assertPutGoodsToComparison(product, res);
     }
 
@@ -144,7 +143,7 @@ public class ReqresApiTest extends TestBase {
     @DisplayName("PUT /comparison/products/ - 404")
     public void addToComparison404Test(){
         ReqProductId product = ReqProductId.builder().productId("25549757433565").build();
-        RespProductIds res = QueriesRestAssured.putGoodsToComparison(product, 404).as(RespProductIds.class);
+        RespProductIds res = StepsRestAssured.putGoodsToComparison(product, 404).as(RespProductIds.class);
         assertPutGoodsToComparison(product, res);
     }
 

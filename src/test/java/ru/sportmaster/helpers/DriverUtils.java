@@ -6,7 +6,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.sportmaster.config.Credentials;
+import ru.sportmaster.config.Project;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -30,7 +30,7 @@ public class DriverUtils {
     }
 
     public static URL getVideoUrl(String sessionId) {
-        String videoUrl = Credentials.config.videoStorage() + sessionId + ".mp4";
+        String videoUrl = Project.config.videoStorage() + sessionId + ".mp4";
 
         try {
             return new URL(videoUrl);

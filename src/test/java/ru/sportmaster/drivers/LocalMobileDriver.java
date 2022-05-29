@@ -6,7 +6,7 @@ import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.remote.AutomationName;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
-import ru.sportmaster.config.Credentials;
+import ru.sportmaster.config.Project;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,9 +24,9 @@ public class LocalMobileDriver implements WebDriverProvider {
         UiAutomator2Options options = new UiAutomator2Options();
         options.merge(capabilities);
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
-        options.setPlatformName(Credentials.config.platformName());
-        options.setDeviceName(Credentials.config.deviceName());
-        options.setPlatformVersion(Credentials.config.platformVersion());
+        options.setPlatformName(Project.config.platformName());
+        options.setDeviceName(Project.config.deviceName());
+        options.setPlatformVersion(Project.config.platformVersion());
         options.setApp(app.getAbsolutePath());
         options.setLocale("ru");
         options.setLanguage("ru");
@@ -39,7 +39,7 @@ public class LocalMobileDriver implements WebDriverProvider {
 
     public static URL getAppiumServerUrl() {
         try {
-            return new URL(Credentials.config.remoteDriverUrl());
+            return new URL(Project.config.remoteDriverUrl());
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
@@ -47,7 +47,7 @@ public class LocalMobileDriver implements WebDriverProvider {
 
     private File getApp() {
         String appPath = "src/test/resources/apk/sportmaster.apk";
-        String appUrl = Credentials.config.app();
+        String appUrl = Project.config.app();
 
         File app = new File(appPath);
         if (!app.exists()) {

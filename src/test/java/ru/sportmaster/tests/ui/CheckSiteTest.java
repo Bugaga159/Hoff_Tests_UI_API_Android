@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import ru.sportmaster.helpers.DriverUtils;
 import ru.sportmaster.helpers.Layer;
-import ru.sportmaster.tests.TestBase;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.title;
@@ -16,7 +15,7 @@ import static io.qameta.allure.Allure.step;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Layer("web")
-public class CheckSiteTest extends TestBase {
+public class CheckSiteTest extends TestBaseWeb {
 
     @Test
     @Tag("UI")

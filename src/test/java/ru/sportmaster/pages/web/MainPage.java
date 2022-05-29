@@ -3,7 +3,7 @@ package ru.sportmaster.pages.web;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import org.openqa.selenium.Cookie;
-import ru.sportmaster.helpers.QueriesRestAssured;
+import ru.sportmaster.helpers.StepsRestAssured;
 import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -20,7 +20,7 @@ public class MainPage {
 
     @Step("add goods to basket and cookies")
     public MainPage addGoodsAndCookies() {
-        Response response = QueriesRestAssured.addGoodsToBasket();
+        Response response = StepsRestAssured.addGoodsToBasket("23117750299", "178160260299");
         Map<String,String> cookies = response.cookies();
         getWebDriver().manage().deleteAllCookies();
         cookies.forEach((k,y) -> getWebDriver().manage().addCookie(new Cookie(k,y)));

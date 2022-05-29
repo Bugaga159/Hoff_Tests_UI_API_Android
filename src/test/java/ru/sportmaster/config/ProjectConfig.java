@@ -22,12 +22,9 @@ public interface ProjectConfig extends Config {
     String browserMobileView();
     String remoteDriverUrl();
     String videoStorage();
-
-    @Key("deviceName")
     @DefaultValue("Pixel_4")
     String deviceName();
     String platformName();
-    @Key("platformVersion")
     @DefaultValue("12.0")
     String platformVersion();
     String user();

@@ -13,7 +13,7 @@ import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
-public class QueriesRestAssured {
+public class StepsRestAssured {
 
     private static RequestSpecification reqSpec = new RequestSpecBuilder()
             .setBasePath("/web-api/v1")
@@ -26,12 +26,14 @@ public class QueriesRestAssured {
      * POST запрос /cart/products/quantity/ на добавление товара в корзину
      * и используется для получения cookies в UI тестах
      * @return Response запроса
+     * @param productId
+     * @param wareId
      */
-    public static Response addGoodsToBasket(){
+    public static Response addGoodsToBasket(String productId, String wareId){
         List<ItemsGoods> items = Lists.newArrayList(ItemsGoods.builder()
-                .productId("23117750299")
+                .productId(productId)
                 .quantity(1)
-                .wareId("178160260299")
+                .wareId(wareId)
                 .build());
         ReqAddGoodsToBasket basket = ReqAddGoodsToBasket.builder()
                 .cartFormat("SIMPLE")
@@ -54,7 +56,7 @@ public class QueriesRestAssured {
      * @param basket - объект товара ReqAddGoodsToBasket для добавления в корзину
      * @return Response запроса
      */
-    @Step("создание запроса на добавление товара в корзину ")
+    @Step("создание запроса на добавление товара в корзину")
     public static Response postProductToCart(ReqAddGoodsToBasket basket, int code) {
         return given()
                 .spec(reqSpec)
@@ -72,7 +74,7 @@ public class QueriesRestAssured {
      * @param prod - id товара для сравнения
      * @return Response запроса
      */
-    @Step("создание запроса на добавление товара в сравнение ")
+    @Step("создание запроса на добавление товара в сравнение")
     public static Response putGoodsToComparison(ReqProductId prod, int code) {
         return given()
                 .spec(reqSpec)
@@ -91,6 +93,7 @@ public class QueriesRestAssured {
      * @param code - status code
      * @return Response запроса
      */
+    @Step("Создание запроса на получение товара по Id")
     public static Response getProductById(String id, int code) {
         return given()
                 .basePath("/ga-api/v1")

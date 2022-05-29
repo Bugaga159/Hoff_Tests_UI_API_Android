@@ -2,7 +2,7 @@ package ru.sportmaster.config;
 
 import org.aeonbits.owner.ConfigFactory;
 
-public class Credentials {
+public class Project {
     public static ProjectConfig config = ConfigFactory.create(ProjectConfig.class, System.getProperties());
 
     public static boolean isWebMobile() {

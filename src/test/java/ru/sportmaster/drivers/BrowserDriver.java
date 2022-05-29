@@ -3,17 +3,17 @@ package ru.sportmaster.drivers;
 import com.codeborne.selenide.Configuration;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import ru.sportmaster.config.Credentials;
+import ru.sportmaster.config.Project;
 import java.util.HashMap;
 import java.util.Map;
 
 public class BrowserDriver {
 
     public static void configure() {
-        Configuration.browser = Credentials.config.browser();
-        Configuration.browserVersion = Credentials.config.browserVersion();
-        Configuration.browserSize = Credentials.config.browserSize();
-        Configuration.baseUrl = Credentials.config.baseUrl();
+        Configuration.browser = Project.config.browser();
+        Configuration.browserVersion = Project.config.browserVersion();
+        Configuration.browserSize = Project.config.browserSize();
+        Configuration.baseUrl = Project.config.baseUrl();
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         ChromeOptions chromeOptions = new ChromeOptions();
@@ -24,16 +24,16 @@ public class BrowserDriver {
         chromeOptions.addArguments("--disable-notifications");
         chromeOptions.addArguments("--lang=en-en");
 
-        if (Credentials.isWebMobile()) { // for chrome only
+        if (Project.isWebMobile()) { // for chrome only
             Map<String, Object> mobileDevice = new HashMap<>();
-            mobileDevice.put("deviceName", Credentials.config.deviceName());
+            mobileDevice.put("deviceName", Project.config.deviceName());
             chromeOptions.setExperimentalOption("mobileEmulation", mobileDevice);
         }
 
-        if (Credentials.isRemoteWebDriver()) {
+        if (Project.isRemoteWebDriver()) {
             capabilities.setCapability("enableVNC", true);
             capabilities.setCapability("enableVideo", true);
-            Configuration.remote = Credentials.config.remoteDriverUrl();
+            Configuration.remote = Project.config.remoteDriverUrl();
         }
 
         capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);

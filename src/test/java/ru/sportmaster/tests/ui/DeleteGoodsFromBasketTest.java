@@ -8,10 +8,9 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import ru.sportmaster.helpers.Layer;
 import ru.sportmaster.pages.web.MainPage;
-import ru.sportmaster.tests.TestBase;
 
 @Layer("web")
-public class DeleteGoodsFromBasketTest extends TestBase {
+public class DeleteGoodsFromBasketTest extends TestBaseWeb {
     MainPage mainPage = new MainPage();
 
     @Test

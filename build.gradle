@@ -1,6 +1,7 @@
 plugins {
     id 'java-library'
     id 'io.qameta.allure' version '2.9.6'
+    id "io.freefair.lombok" version "6.4.3"
 }
 
 repositories {
@@ -28,8 +29,8 @@ allure {
 }
 
 dependencies {
-    testCompileOnly 'org.projectlombok:lombok:1.18.24'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
+//    testCompileOnly 'org.projectlombok:lombok:1.18.24'
+//    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
     testImplementation(
             "org.aspectj:aspectjweaver:1.9.9.1",
             "com.codeborne:selenide:$selenideVersion",
@@ -43,13 +44,10 @@ dependencies {
             "com.fasterxml.jackson.core:jackson-core:2.13.3",
             "com.fasterxml.jackson.core:jackson-databind:2.13.3",
             "com.github.javafaker:javafaker:1.0.2",
-            "org.junit.jupiter:junit-jupiter-api:$junitVersion",
-            "org.junit.jupiter:junit-jupiter-params:$junitVersion")
-    testRuntimeOnly(
-            "org.slf4j:slf4j-simple:1.7.36",
-            "org.junit.jupiter:junit-jupiter-engine:$junitVersion")
+            "org.junit.jupiter:junit-jupiter:$junitVersion",
+            "org.junit.jupiter:junit-jupiter-params:$junitVersion",
+            "org.slf4j:slf4j-simple:1.7.36")
 }
-
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -77,16 +75,19 @@ tasks.withType(Test) {
         }
     }
 }
+
 task runTestsUi(type: Test) {
     useJUnitPlatform {
         includeTags 'UI'
     }
 }
+
 task runTestsApi(type: Test) {
     useJUnitPlatform {
         includeTags 'API'
     }
 }
+
 task runTestsMobile(type: Test) {
     useJUnitPlatform {
         includeTags 'Android'
