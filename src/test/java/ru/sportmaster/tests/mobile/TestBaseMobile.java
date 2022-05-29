@@ -53,8 +53,5 @@ public class TestBaseMobile extends TestBase {
         if (Project.isBrowserStack()) {
             AllureAttachments.addVideoBrowserstack(sessionId);
         }
-        if (Project.isVideoOn()) {
-            AllureAttachments.addVideoBrowser(sessionId);
-        }
     }
 }
